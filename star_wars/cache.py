@@ -6,11 +6,7 @@ CACHE_FILE = os.path.join(os.getcwd(), '../cache.pkl')
 
 
 def persist_to_file():
-    try:
-        with open(CACHE_FILE, 'rb') as handle:
-            cache = pickle.load(handle)
-    except (IOError, ValueError):
-        cache = {}
+    cache = read_cache()
 
     def decorator(func):
         def new_func(name, world):
@@ -41,3 +37,11 @@ def clear_cache():
 def write_to_pickle(filename, cache):
     with open(filename, 'wb') as handle:
         pickle.dump(cache, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+def read_cache():
+    try:
+        with open(CACHE_FILE, 'rb') as handle:
+            return pickle.load(handle)
+    except (IOError, ValueError):
+        return {}

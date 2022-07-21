@@ -23,6 +23,9 @@ def search_clean_function():
     # Define the bool parameter --clean after cache parameter
     cache_parser.add_argument('--clean', action='store_true', help='CLear cached data')
 
+    # Define the history parser as a subparser
+    subparsers.add_parser('history')
+
     # Parse command line's parameters
     args = parser.parse_args()
 
