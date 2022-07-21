@@ -1,6 +1,6 @@
 from typing import Dict, List, Union
 import requests
-import cache
+from star_wars import cache
 
 
 @cache.persist_to_file()

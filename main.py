@@ -1,6 +1,6 @@
-from cache import clear_cache
-from commands import search_clean_function
-from services import request_name, print_info
+from star_wars.cache import clear_cache
+from star_wars.commands import search_clean_function
+from star_wars.services import request_name, print_info
 
 if __name__ == '__main__':
     """

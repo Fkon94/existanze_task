@@ -1,9 +1,8 @@
-import atexit
 import os
 import pickle
 from datetime import datetime
 
-CACHE_FILE = os.path.join(os.getcwd(), 'cache.pkl')
+CACHE_FILE = os.path.join(os.getcwd(), '../cache.pkl')
 
 
 def persist_to_file():
@@ -13,13 +12,12 @@ def persist_to_file():
     except (IOError, ValueError):
         cache = {}
 
-    atexit.register(lambda: write_to_pickle(CACHE_FILE, cache))
-
     def decorator(func):
         def new_func(name, world):
             if (name, world) not in cache:
                 # datetime object containing current date and time
                 cache[(name, world)] = (func(name, world), datetime.now())
+                write_to_pickle(CACHE_FILE, cache)
             return cache[(name, world)]
 
         return new_func
