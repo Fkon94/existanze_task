@@ -10,7 +10,7 @@ def search_clean_function():
     parser = argparse.ArgumentParser(description='Search Star Wars Characters.',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    subparsers = parser.add_subparsers()
+    subparsers = parser.add_subparsers(dest='command')
     # Define the search parser as a subparser before name parameter
     search_parser = subparsers.add_parser('search')
     # Define the name parser that is a string after the search parameter
@@ -25,12 +25,7 @@ def search_clean_function():
 
     # Parse command line's parameters
     args = parser.parse_args()
-    if 'clean' in args:
-        if args.clean:
-            print("removed cache")
-        else:
-            print("Type cache --clean to clear the cache")
-    else:
-        return args.name, args.world
+
+    return args
 
 
