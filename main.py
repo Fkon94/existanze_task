@@ -5,9 +5,14 @@ from star_wars.services import request_name, print_info
 if __name__ == '__main__':
     """
     Main function that retrieves the searched name
-    and the world that it belongs, through Star Wars API.
+    and the world that it belongs (if requested), through Star Wars API, 
+    with search 'name' --world command
     or
-    Called to clear the cached data
+    Called to clear the cached data with cache --clean command
+    or 
+    Called to see the History of searches made, 
+    the time made and the searched result 
+    
     At the end it prints the result on console.
     """
     args = search_clean_function()

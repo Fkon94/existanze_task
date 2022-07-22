@@ -3,16 +3,17 @@ import requests
 from star_wars import cache
 
 
+# decorator that caches the result of request_name function
 @cache.persist_to_file()
 def request_name(name_search: str, world: bool) -> List[Dict[str, Dict[str, str]]]:
     """
     Function that makes a request through Star Wars API in order to retrieve data
     for the name that searched.
-    Also retrieves data for the world that the name belong to if the --world parameter
-    passed as a parameter.
+    Also retrieves data for the world that the name belong to
+    if the --world argument passed as a parameter.
     :param name_search: The name next to search parameter (search 'Luke Sky')
     :param world: --world parameter
-    :return: Prints the name provided and the world that it belongs if world parameter provided
+    :return: Returns the name provided and the world that it belongs if world parameter provided
     """
 
     # Takes the response through the Star Wars API request
@@ -29,6 +30,12 @@ def request_name(name_search: str, world: bool) -> List[Dict[str, Dict[str, str]
 
 
 def print_info(characters: List[Dict[str, Dict[str, Union[Dict[str, str], str]]]]) -> None:
+    """
+    Function that prints the result from searched name and homeworld
+    if homeworld exists in characters parameter
+    :param characters: the full result of searched name and his homeworld (if provided)
+    :return: Prints characters info
+    """
     # If there is not a result through the API request
     if not characters:
         print("\nThe force is not strong within you\n")
@@ -74,10 +81,10 @@ def print_info(characters: List[Dict[str, Dict[str, Union[Dict[str, str], str]]]
 
 def request_world(home_world: str) -> Dict[str, str]:
     """
-    Function that requests and then print the world that belongs to the
+    Function that requests and then returns the world info that belongs to the
     Star Wars character provided on request_name function
     :param home_world: request url parameter for the name_search parameter provided on request_name function
-    :return: Prints the API response according to the url provided
+    :return: Returns the API response according to the url provided
     """
     # Takes the response through the Star Wars API request
     response = requests.get(home_world)

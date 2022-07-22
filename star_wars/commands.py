@@ -3,9 +3,11 @@ import argparse
 
 def search_clean_function():
     """
-    Function that defines the console parameters (search 'name' -- world) and (clean --cache)
-    :return: the name that searched on command line (search 'Luke Sky'), the boolean parameter --world if provided
-    or prints the message tha cache removed if cache parameter provided
+    Function that defines the console parameters (search 'name' -- world, clean --cache, history)
+    :return: the name that searched on command line (search 'Luke Sky'),
+             the boolean parameter --world if provided
+             or prints the message tha cache removed if cache parameter provided
+             or prints the searches made provided that the user has not cleaned their cache beforehand
     """
     parser = argparse.ArgumentParser(description='Search Star Wars Characters.',
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
